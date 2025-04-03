@@ -28,7 +28,7 @@ const TodoSchema = new mongoose.Schema({
 const Todo = mongoose.model('Todo', TodoSchema);
 
 // Rota para obter todas as tarefas (GET)
-app.get('/todos', async (req, res) => {
+app.get('/api/todos', async (req, res) => {
   try {
     const todos = await Todo.find(); // Retorna todas as tarefas do banco
     res.json(todos);
@@ -38,7 +38,7 @@ app.get('/todos', async (req, res) => {
 });
 
 // Rota para adicionar uma nova tarefa (POST)
-app.post('/todos', async (req, res) => {
+app.post('/api/todos', async (req, res) => {
   const { text } = req.body; // Obtém o texto da tarefa do corpo da requisição
 
   // Verifica se o campo "text" está presente
@@ -60,7 +60,7 @@ app.post('/todos', async (req, res) => {
 });
 
 // Rota para marcar uma tarefa como concluída (PATCH)
-app.patch('/todos/:id', async (req, res) => {
+app.patch('/api/todos/:id', async (req, res) => {
   try {
     const todo = await Todo.findById(req.params.id); // Encontra a tarefa pelo ID
 
@@ -78,7 +78,7 @@ app.patch('/todos/:id', async (req, res) => {
 });
 
 // Rota para excluir uma tarefa (DELETE)
-app.delete('/todos/:id', async (req, res) => {
+app.delete('/api/todos/:id', async (req, res) => {
   try {
     const todo = await Todo.findByIdAndDelete(req.params.id); // Deleta a tarefa pelo ID
 
